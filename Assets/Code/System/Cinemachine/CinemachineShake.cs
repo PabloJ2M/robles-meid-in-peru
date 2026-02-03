@@ -1,5 +1,5 @@
-using Cinemachine;
 using UnityEngine;
+using Unity.Cinemachine;
 
 public class CinemachineShake : MonoBehaviour
 {
@@ -8,10 +8,10 @@ public class CinemachineShake : MonoBehaviour
 
     private CinemachineBasicMultiChannelPerlin _noise;
 
-    private void Awake() => _noise = GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+    private void Awake() => _noise = GetComponent<CinemachineBasicMultiChannelPerlin>();
     private void Start() => SetValues(0);
-    private void Update() => SetValues(Mathf.MoveTowards(_noise.m_AmplitudeGain, 0, Time.deltaTime * _speed));
-    private void SetValues(float value) => _noise.m_AmplitudeGain = _noise.m_FrequencyGain = value;
+    private void Update() => SetValues(Mathf.MoveTowards(_noise.AmplitudeGain, 0, Time.deltaTime * _speed));
+    private void SetValues(float value) => _noise.AmplitudeGain = _noise.FrequencyGain = value;
 
     public void ShakeCamera() => SetValues(_force);
 }
